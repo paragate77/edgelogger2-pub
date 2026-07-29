@@ -1,0 +1,39 @@
+name = "edgelogger2-pub"
+main = "src/index.ts"
+compatibility_date = "2024-09-14"
+
+# ── Log coverage ──────────────────────────────────────────────
+# Controls which parts of the HTTP traffic are logged.
+#
+# "req_headers"  – request headers only
+# "req_full"     – request headers + body
+# "res_headers"  – response headers only
+# "res_full"     – response headers + body
+# "headers"      – request headers + response headers
+# "full"         – everything
+# "headers"      – request + response headers only (default)
+#
+[vars]
+LOG_COVERAGE = "full"
+
+# ── Observability ─────────────────────────────────────────────
+# Enables native Cloudflare Workers log collection.
+# Logs are visible in the Cloudflare dashboard and via wrangler tail.
+#
+[observability]
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+
+# ── Route configuration ───────────────────────────────────────
+# Copy this file to wrangler.toml and fill in your real values.
+# wrangler.toml is git-ignored to keep the domain private.
+#
+# Use a Route (not Custom Domain) when you have an existing web
+# server and only want the Worker to intercept specific paths.
+# The domain must be proxied (orange cloud) in Cloudflare DNS.
+#
+# [[routes]]
+# pattern = "your.subdomain.com/path*"
+# zone_name = "yourdomain.com"
